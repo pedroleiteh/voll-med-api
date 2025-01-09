@@ -21,7 +21,7 @@ public class Endereco {
     private String uf;
 
     public Endereco(EnderecoDto enderecoDto) {
-        this.logradouro = enderecoDto.logadouro();
+        this.logradouro = enderecoDto.logradouro();
         this.bairro = enderecoDto.bairro();
         this.cep = enderecoDto.cep();
         this.numero = enderecoDto.numero();
