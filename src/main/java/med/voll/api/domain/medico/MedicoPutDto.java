@@ -1,13 +1,13 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.medico;
 
 import jakarta.validation.constraints.NotNull;
-import med.voll.api.endereco.EnderecoDto;
+import med.voll.api.domain.endereco.EnderecoDto;
 
-public record PacientePutDto(
+public record MedicoPutDto(
     @NotNull
     Long id,
     String nome,
     String telefone,
     EnderecoDto endereco) {
-
+    
 }
