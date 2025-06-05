@@ -1,17 +1,14 @@
 package med.voll.api.domain.consulta;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Table(name = "consultas")
 @Entity(name = "Consulta")
-@EqualsAndHashCode(of = "id")
 public class Consulta {
 
     @Id
@@ -52,5 +49,17 @@ public class Consulta {
 
     public LocalDateTime getData() {
         return data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Consulta consulta = (Consulta) o;
+        return Objects.equals(id, consulta.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

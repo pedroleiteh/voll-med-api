@@ -6,18 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import med.voll.api.domain.endereco.Endereco;
+
+import java.util.Objects;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +23,19 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
     private Boolean ativo;
+
+    public Paciente() {
+    }
+
+    public Paciente(Long id, String nome, String email, String telefone, String cpf, Endereco endereco, Boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.ativo = ativo;
+    }
 
     public Paciente(PacientePostDto dados) {
         this.ativo = true;
@@ -109,5 +116,17 @@ public class Paciente {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return Objects.equals(id, paciente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
